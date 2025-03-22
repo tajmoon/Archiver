@@ -1,0 +1,9 @@
+services:
+  archiver:
+    container_name: "archiver"
+    build: .
+    restart: "no"
+    tty: true
+    volumes:
+      - "./archiver:/app"
+      - "./test:/test"

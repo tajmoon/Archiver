@@ -1,0 +1,24 @@
+{
+  "archiveConfigs": [
+    {
+      "sources": [
+        "C:\\your\\dir",
+        "C:\\example\\file.txt"
+      ],
+      "destination": "C:\\archive.zip",
+      "type": "zip",
+      "compression": {
+        "method": "BZIP2",
+        "level": 9
+      }
+    },
+    {
+      "sources": [
+        "E:\\files_to_archive"
+      ],
+      "destination": "E:\\your\\archives\\exaple_archive.zip",
+      "type": "zip",
+      "compression": null
+    }
+  ]
+}
