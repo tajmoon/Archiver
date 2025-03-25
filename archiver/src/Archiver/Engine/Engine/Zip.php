@@ -2,6 +2,7 @@
 
 namespace App\Archiver\Engine\Engine;
 
+use App\Archiver\DataTypes\Config\ArchiveConfig\Enums\Methods\Zip as ZipMethods;
 use App\Archiver\DataTypes\Config\ArchiveConfig\Compression;
 use App\Archiver\Engine\Base\AbstractCompressArchiveEngine;
 use PhpZip\Constants\ZipCompressionMethod;
@@ -11,13 +12,6 @@ use Exception;
 
 final class Zip extends AbstractCompressArchiveEngine
 {
-    /** @var array  */
-    private const COMPRESSIONS_METHODS = [
-        null => ZipCompressionMethod::STORED,
-        'DEFLATED' => ZipCompressionMethod::DEFLATED,
-        'BZIP2' => ZipCompressionMethod::BZIP2
-    ];
-
     /** @var ZipFile */
     private ZipFile $zipFileObject;
 
@@ -58,12 +52,12 @@ final class Zip extends AbstractCompressArchiveEngine
                 $this->zipFileObject->addDirRecursive(
                     $source,
                     basename($source),
-                    compressionMethod: self::COMPRESSIONS_METHODS[$this->config->compression?->method]
+                    compressionMethod: ZipMethods::COMPRESSIONS_METHODS[$this->config->compression?->method]
                 );
             } else {
                 $this->zipFileObject->addFile(
                     $source,
-                    compressionMethod: self::COMPRESSIONS_METHODS[$this->config->compression?->method]
+                    compressionMethod: ZipMethods::COMPRESSIONS_METHODS[$this->config->compression?->method]
                 );
             }
         }
@@ -92,10 +86,10 @@ final class Zip extends AbstractCompressArchiveEngine
      * @throws Exception
      */
     protected static function getCompressionMethodName(string $method) : string|int {
-        if (!isset(self::COMPRESSIONS_METHODS[$method])) {
+        if (!isset(ZipMethods::COMPRESSIONS_METHODS[$method])) {
             throw new Exception('Unknown compression method: ' . $method);
         }
 
-        return self::COMPRESSIONS_METHODS[$method];
+        return ZipMethods::COMPRESSIONS_METHODS[$method];
     }
 }
