@@ -1,4 +1,4 @@
-/config/dev.archiver.json
+/config/*.archiver.json
 
 ###> symfony/framework-bundle ###
 /.env.local

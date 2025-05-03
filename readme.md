@@ -13,7 +13,12 @@ Install requirements, run `composer install` in directory archiver. \
 Next [Configure](#Configuration).
 
 # Configuration
-Defult config location: `config/archiver.json`
+Default config file location: `config/archiver.json`
+
+If env (from .env file) CONFIG_PREFIX exist an attempt is made to load from the file `config/{CONFIG_PREFIX}.archiver.json`, \
+if env CONFIG_PREFIX does not exist, then trying to load `config/{APP_ENV}.archiver.json`. \
+If configuration didn't loaded from `config/{CONFIG_PREFIX}.archiver.json` or `config/{APP_ENV}.archiver.json`, \
+then attempt to load config from Default config file location: `config/archiver.json`
 
 ## First config element:
 | Name | Type | Description |
